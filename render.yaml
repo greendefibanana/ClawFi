@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: clawfi-api
+    runtime: node
+    plan: starter
+    buildCommand: npm ci --include=dev && npm run typecheck
+    startCommand: npm run start:api
+    healthCheckPath: /health
+    autoDeploy: true
+    disk:
+      name: clawfi-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CLAWFI_API_HOST
+        value: 0.0.0.0
+      - key: CLAWFI_SESSION_STORE_PATH
+        value: /var/data/clawfi/sessions.json
+      - key: CLAWFI_EVIDENCE_DIR
+        value: /var/data/clawfi/evidence
+      - key: HEDERA_MODE
+        value: real_scaffolded
+      - key: HEDERA_NETWORK
+        value: testnet
+      - key: CLAWFI_ENABLE_LIVE_TRADING
+        value: "true"
+      - key: CLAWFI_ENABLE_LIVE_DEFI
+        value: "true"

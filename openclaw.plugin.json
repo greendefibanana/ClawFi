@@ -1,0 +1,27 @@
+{
+  "id": "clawfi-openclaw",
+  "kind": "provider",
+  "name": "ClawFi",
+  "version": "0.2.0",
+  "description": "Hedera-native treasury workflow, deterministic policy review, and execution simulation tools for OpenClaw.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "simulateOnly": {
+        "type": "boolean",
+        "default": true
+      },
+      "approvalRequired": {
+        "type": "boolean",
+        "default": true
+      },
+      "hederaMode": {
+        "type": "string",
+        "enum": ["simulated", "real_scaffolded"],
+        "default": "simulated"
+      }
+    },
+    "required": ["simulateOnly", "approvalRequired", "hederaMode"]
+  }
+}
